@@ -27,6 +27,11 @@
   </div>
 
   <div>
+    <%= form.label :imgs, style: "display: block" %>
+    <%= form.file_field :imgs, multiple: true, accept: 'image/jpeg,image/gif,image/png' %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

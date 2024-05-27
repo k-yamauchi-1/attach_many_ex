@@ -14,4 +14,12 @@
     <%= item.price %>
   </p>
 
+  <p>
+    <% if item.imgs.attached? %>
+      <% item.imgs.each do |img| %>
+        <div><%= image_tag img %></div>
+      <% end %>
+    <% end %>
+  </p>
+
 </div>
