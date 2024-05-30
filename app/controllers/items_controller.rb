@@ -25,6 +25,11 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if params[:item][:delete_img_ids].present?
+      params[:item][:delete_img_ids].each do |id|
+        @item.imgs.find_by_id(id)&.delete
+      end
+    end
     if @item.update(item_params)
       flash[:success] = "Item edited!"
       redirect_to item_path(@item)

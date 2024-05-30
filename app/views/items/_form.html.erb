@@ -29,6 +29,16 @@
   <div>
     <%= form.label :imgs, style: "display: block" %>
     <%= form.file_field :imgs, multiple: true, accept: 'image/jpeg,image/gif,image/png' %>
+
+    <% if item.imgs.attached? %>
+      <p>添付済みの画像（削除する画像はチェック）</p>
+      <% item.imgs.each do |img| %>
+        <div>
+          <%= form.check_box :delete_img_ids, { multiple: true }, img.id, false %>
+          <%= image_tag img %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 
   <div>
