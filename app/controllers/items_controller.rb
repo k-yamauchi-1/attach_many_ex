@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
     if params[:item][:delete_img_ids].present?
       params[:item][:delete_img_ids].each do |id|
         @item.imgs.find_by_id(id)&.delete
+        params[:item][:imgs].delete(id)
       end
     end
     if @item.update(item_params)

@@ -34,6 +34,7 @@
       <p>添付済みの画像（削除する画像はチェック）</p>
       <% item.imgs.each do |img| %>
         <div>
+          <%= form.hidden_field :imgs, multiple: true, value: img.signed_id %>
           <%= form.check_box :delete_img_ids, { multiple: true }, img.id, false %>
           <%= image_tag img %>
         </div>
