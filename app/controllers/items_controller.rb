@@ -30,6 +30,11 @@ class ItemsController < ApplicationController
         @item.imgs.find_by_id(id)&.delete
       end
     end
+    if params[:item][:imgs].present?
+      params[:item][:imgs].each do |img|
+        @item.imgs.attach(img)
+      end
+    end
     if @item.update(item_params)
       flash[:success] = "Item edited!"
       redirect_to item_path(@item)
@@ -68,6 +73,6 @@ class ItemsController < ApplicationController
     end
 
     def item_params
-      params.require(:item).permit(:name, :description, :price, imgs: [])
+      params.require(:item).permit(:name, :description, :price)
     end
 end
